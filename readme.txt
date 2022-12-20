@@ -69,5 +69,37 @@ docker logs dokcer_name
 kiem tra danh sach docker volume:
 
 docker volume ls
-
+docker volume rm -f volume_name
 docker volume inspect my_volume_1
+
+===============
+
+Connect Mysql tren container
+
+mysql --protocol=tcp -h localhost -P 3308 -u root -p
+Abc@123456789
+
+===========
+
+tao ra network
+
+docker network create docker_network_app
+
+docker network ls
+
+========
+
+nodejs container
+
+
+docker run -dp 3002:3000 ^
+-rm ^
+--name todo-app-container ^
+-w /app -v "$(pwd):/app" ^
+--network todo-app-network ^
+-e MYSQL_HOST=todo-app-network-alias ^
+-e MYSQL_USER=root ^
+-e MYSQL_PASSWORD=Abc@123456789 ^
+-e MYSQL_DB=todoDB ^
+node ^
+sh -c "yarn install && yarn run:dev"
